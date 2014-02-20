@@ -151,7 +151,8 @@ var helper = (function() {
         $('#profile').append(
             $('<p><img src=\"' + profile.image.url + '\"></p>'));
         $('#profile').append(
-            $('<p>Hello ' + profile.displayName + '!<br />Tagline: ' +
+            $('<p>Hello ' + profile.displayName + '!<br />Email: ' +
+            profile.email + '!<br />Tagline: ' +
             profile.tagline + '<br />About: ' + profile.aboutMe + '</p>'));
         if (profile.cover && profile.coverPhoto) {
           $('#profile').append(
