@@ -148,9 +148,7 @@ var helper = (function() {
           $('#profile').append(profile.error);
           return;
         }
-		var email = profile['emails'].filter(function(v) {
-			return v.type === 'account'; // Filter out the primary email
-		})[0].value; // get the email from the filtered results, should always be defined.
+		var email = profile.emails[0];
         $('#profile').append(
             $('<p><img src=\"' + profile.image.url + '\"></p>'));
         $('#profile').append(
