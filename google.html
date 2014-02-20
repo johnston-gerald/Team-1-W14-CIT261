@@ -43,9 +43,6 @@ Authors: Peter Wong
     <h2>User's profile information</h2>
     <div id="profile"></div>
 
-    <h2>User's friends that are visible to this app</h2>
-    <div id="visiblePeople"></div>
-
     <h2>Authentication Logs</h2>
     <pre id="authResult"></pre>
   </div>
@@ -108,31 +105,11 @@ var helper = (function() {
           console.log('revoke response: ' + result);
           $('#authOps').hide();
           $('#profile').empty();
-          $('#visiblePeople').empty();
           $('#authResult').empty();
           $('#gConnect').show();
         },
         error: function(e) {
           console.log(e);
-        }
-      });
-    },
-
-    /**
-     * Gets and renders the list of people visible to this app.
-     */
-    people: function() {
-      var request = gapi.client.plus.people.list({
-        'userId': 'me',
-        'collection': 'visible'
-      });
-      request.execute(function(people) {
-        $('#visiblePeople').empty();
-        $('#visiblePeople').append('Number of people visible to this app: ' +
-            people.totalItems + '<br/>');
-        for (var personIndex in people.items) {
-          person = people.items[personIndex];
-          $('#visiblePeople').append('<img src="' + person.image.url + '">');
         }
       });
     },
@@ -153,9 +130,9 @@ var helper = (function() {
             $('<p><img src=\"' + profile.image.url + '\"></p>'));
         $('#profile').append(
             $('<p>Hello ' + profile.displayName 
-			+ '!<br />ID: ' + profile.id
-			+ '!<br />Email: ' +  email
-			+ '!<br />Tagline: ' + profile.tagline + 
+			+ '<br />ID: ' + profile.id
+			+ '<br />Email: ' +  email
+			+ '<br />Tagline: ' + profile.tagline + 
 			'<br />About: ' + profile.aboutMe + '</p>'));
         if (profile.cover && profile.coverPhoto) {
           $('#profile').append(
