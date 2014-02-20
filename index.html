@@ -148,7 +148,7 @@ var helper = (function() {
           $('#profile').append(profile.error);
           return;
         }
-		var email = profile.emails[0];
+		var email = profile.emails[0].value;
         $('#profile').append(
             $('<p><img src=\"' + profile.image.url + '\"></p>'));
         $('#profile').append(
