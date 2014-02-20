@@ -148,12 +148,13 @@ var helper = (function() {
           $('#profile').append(profile.error);
           return;
         }
+		var email = profile.emails[0].value
         $('#profile').append(
             $('<p><img src=\"' + profile.image.url + '\"></p>'));
         $('#profile').append(
             $('<p>Hello ' + profile.displayName 
 			+ '!<br />ID: ' + profile.id
-			+ '!<br />Email: ' +  profile.emails
+			+ '!<br />Email: ' +  profile.email
 			+ '!<br />Tagline: ' + profile.tagline + 
 			'<br />About: ' + profile.aboutMe + '</p>'));
         if (profile.cover && profile.coverPhoto) {
