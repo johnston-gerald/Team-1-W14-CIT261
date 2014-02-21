@@ -107,6 +107,9 @@ var helper = (function() {
           $('#profile').empty();
           $('#authResult').empty();
           $('#gConnect').show();
+		  localStorage.removeItem("displayName");
+		  localStorage.removeItem("id");
+		  localStorage.removeItem("email");
         },
         error: function(e) {
           console.log(e);
