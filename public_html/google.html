@@ -107,6 +107,9 @@ var helper = (function() {
           $('#profile').empty();
           $('#authResult').empty();
           $('#gConnect').show();
+		  localStorage.removeItem("displayName");
+		  localStorage.removeItem("id");
+		  localStorage.removeItem("email");
         },
         error: function(e) {
           console.log(e);
@@ -138,6 +141,21 @@ var helper = (function() {
           $('#profile').append(
               $('<p><img src=\"' + profile.cover.coverPhoto.url + '\"></p>'));
         }
+		
+		if (typeof(Storage) != "undefined")
+		  {
+		  // Store
+		  localStorage.setItem("displayName", profile.displayName);
+		  localStorage.setItem("id", profile.id);
+		  localStorage.setItem("email", email);
+		  // Retrieve
+
+		  }
+		else
+		  {
+		  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Storage...";
+		  }
+		
       });
     }
   };
