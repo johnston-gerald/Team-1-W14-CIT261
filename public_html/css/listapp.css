@@ -1,0 +1,15 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+button {
+    width: 25%;
+    height: 75px;
+    font-size: 50px;
+}
+
+button:hover {
+    font-weight:bold;
+    color: blue;
+}
