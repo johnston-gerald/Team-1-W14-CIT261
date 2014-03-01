@@ -6,7 +6,7 @@ var listapp = (function() {
             data.id = localStorage.id;
             data.user_name = localStorage.user_name;
             data.email = localStorage.email;
-            var request = this.ajaxRequest('GET', 'php/get_user.php', data);
+            var request = this.ajaxRequest('POST', 'php/get_user.php', data);
             request.onreadystatechange = function(){
                 if (request.readyState==4 && request.status==200) {
                     document.getElementById("login").innerHTML = request.responseText;
