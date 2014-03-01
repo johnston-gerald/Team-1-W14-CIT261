@@ -12,10 +12,11 @@ include("databaseenv.php");
     
     if($user->num_rows){
         //get users lists
-        
+        echo 'Logged In';
     } else {
         //Add the user
         $db->query("INSERT INTO `users` (`id`, `user_name`, `email`)  VALUES (" . $_POST['id'] . ", '" . $_POST['user_name'] . "', '" . $_POST['email'] . "')");
+        echo 'Created New User';
     }
     
 ?>    
