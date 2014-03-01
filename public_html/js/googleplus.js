@@ -57,14 +57,14 @@ return {
             contentType: 'application/json',
             dataType: 'jsonp',
             success: function(result) {
-              console.log('revoke response: ' + result);
-              $('#authOps').hide();
-              $('#profile').empty();
-              $('#authResult').empty();
-              $('#gConnect').show();
-                      localStorage.removeItem("user_name");
-                      localStorage.removeItem("id");
-                      localStorage.removeItem("email");
+                console.log('revoke response: ' + result);
+                $('#authOps').hide();
+                $('#profile').empty();
+                $('#authResult').empty();
+                $('#gConnect').show();
+                localStorage.removeItem("user_name");
+                localStorage.removeItem("id");
+                localStorage.removeItem("email");
             },
             error: function(e) {
               console.log(e);
@@ -87,7 +87,7 @@ return {
             xmlhttp.send("id="+profile.id+"&user_name="+profile.displayName+"&email="+email);
             /////////////////////////////////////////////////////////////////////////////////
 
-            $('#profile').empty();
+            /*$('#profile').empty();
 
             if (profile.error) {
               $('#profile').append(profile.error);
@@ -104,7 +104,7 @@ return {
             if (profile.cover && profile.coverPhoto) {
                 $('#profile').append(
                 $('<p><img src=\"' + profile.cover.coverPhoto.url + '\"></p>'));
-            }
+            }*/
 
             if (typeof(Storage) != "undefined") {
                 // Store

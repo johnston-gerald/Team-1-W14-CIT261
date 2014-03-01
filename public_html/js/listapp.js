@@ -1,17 +1,13 @@
 var listapp = (function() {
     return{
         login: function (){
-            
             var data = {};
             data.id = localStorage.id;
             data.user_name = localStorage.user_name;
             data.email = localStorage.email;
+            console.log(data);
+            console.log(localStorage);
             var request = this.ajaxRequest('POST', 'php/get_user.php', data);
-            request.onreadystatechange = function(){
-                if (request.readyState==4 && request.status==200) {
-                    document.getElementById("login").innerHTML = request.responseText;
-                }
-            }
         },
         showMenu: function (){
             var request = this.ajaxRequest('GET', 'include/menu.html');
