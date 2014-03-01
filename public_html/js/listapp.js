@@ -8,6 +8,14 @@ var listapp = (function() {
                 }
             }
         },
+        showLists: function (){
+            var request = this.ajaxRequest('GET', 'include/lists.html');
+            request.onreadystatechange = function(){
+                if (request.readyState==4 && request.status==200) {
+                    document.getElementById("main-lists").innerHTML = request.responseText;
+                }
+            }
+        },
         ajaxRequest: function(method, url, data){
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open(method,url,true);

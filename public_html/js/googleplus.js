@@ -147,4 +147,5 @@ function onSignInCallback(authResult) {
 
 function startApp(){
     listapp.showMenu();
+    listapp.showLists();
 }
