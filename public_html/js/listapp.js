@@ -12,7 +12,7 @@ var listapp = (function() {
             var request = this.ajaxRequest('GET', 'include/lists.html');
             request.onreadystatechange = function(){
                 if (request.readyState==4 && request.status==200) {
-                    document.getElementById("main-lists").innerHTML = request.responseText;
+                    document.getElementById("content").innerHTML = request.responseText;
                 }
             }
         },
