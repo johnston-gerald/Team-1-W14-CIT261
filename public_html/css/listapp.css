@@ -4,9 +4,9 @@ body {
     text-align: center;
 }
 
-button {
+#main-menu button {
     width: 25%;
-    height: 75px;
+    height: 40px;
     font-size: 50px;
 }
 
