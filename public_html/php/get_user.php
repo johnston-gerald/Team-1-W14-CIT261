@@ -1,8 +1,6 @@
 <?php
-    $dbhost = 'localhost';	
-    $dbuser = 'cit261';
-    $dbpass = 'vyTxY7N69rURZnxu';
-    $dbname = 'listapp';
+include("databaseenv.php");
+
     $db = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
     if ($db->connect_errno) {
@@ -18,3 +16,5 @@
         //Add the user
         $db->query("INSERT INTO `users` (`id`, `user_name`, `email`)  VALUES (" . $_POST['id'] . ", '" . $_POST['user_name'] . "', '" . $_POST['email'] . "')");
     }
+    
+?>    

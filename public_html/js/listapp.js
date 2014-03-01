@@ -1,5 +1,13 @@
 var listapp = (function() {
     return{
+        login: function (){
+            var request = this.ajaxRequest('GET', 'include/login.html');
+            request.onreadystatechange = function(){
+                if (request.readyState==4 && request.status==200) {
+                    document.getElementById("login").innerHTML = request.responseText;
+                }
+            }
+        },
         showMenu: function (){
             var request = this.ajaxRequest('GET', 'include/menu.html');
             request.onreadystatechange = function(){
