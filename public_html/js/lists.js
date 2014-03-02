@@ -18,9 +18,7 @@ function makeUL(array) {
         var href = document.createElement('a');
         var span = document.createElement('span');
         
-        //item.appendChild('a href="#"');
-
-        // Set its contents:
+        // Set the contents:
         href.appendChild(document.createTextNode(array[i]));
         
         // Set the URL and class
@@ -34,8 +32,10 @@ function makeUL(array) {
         list.appendChild(item);
     }
 
-    // Finally, return the constructed list:
+    // Return the list:
     return list;
 }
 // Add the contents of lists[] to #lists:
 document.getElementById('lists').appendChild(makeUL(lists));
+
+console.log(makeUL(lists));
