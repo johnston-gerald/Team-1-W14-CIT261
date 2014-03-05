@@ -18,6 +18,12 @@ include("databaseenv.php");
 			JOIN `list_items` ON `list_items`.`list_id` = `lists`.`list_id` 
 			JOIN `list_options` ON `list_options`.`list_id` = `lists`.`list_id` 
 			WHERE user_id = " . $_POST['id']);
+        echo "
+			SELECT * FROM `user_list`
+			JOIN `lists` ON `lists`.`list_id` = `user_list`.`list_id`
+			JOIN `list_items` ON `list_items`.`list_id` = `lists`.`list_id`
+			JOIN `list_options` ON `list_options`.`list_id` = `lists`.`list_id`
+			WHERE user_id = " . $_POST['id'];
 		echo json_encode($user_data->fetch_array());
     } else {
         //Add the user

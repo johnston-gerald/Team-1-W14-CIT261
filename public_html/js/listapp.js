@@ -1,5 +1,11 @@
 var listapp = (function() {
     return{
+        addList: function(){
+            var textfield = document.createElement("input");
+            var list = document.createElement("li");
+            list.appendChild(textfield);
+            document.getElementById('lists-container').appendChild(list);
+        },
         login: function (){
             var data = {};
             data.id = localStorage.id;
@@ -8,6 +14,12 @@ var listapp = (function() {
             console.log(data);
             console.log(localStorage);
             var request = this.ajaxRequest('POST', 'php/get_user.php', data);
+
+            request.onreadystatechange = function(){
+                if (request.readyState==4 && request.status==200) {
+                    //localStorage.lists = request.reponseText.lists;
+                }
+            }
         },
         showMenu: function (){
             var request = this.ajaxRequest('GET', 'include/menu.html');
@@ -18,6 +30,9 @@ var listapp = (function() {
             }
         },
         showLists: function (){
+            for(i=0;i < localStorage.lists;i++){
+
+            }
             var request = this.ajaxRequest('GET', 'include/lists.html');
             request.onreadystatechange = function(){
                 if (request.readyState==4 && request.status==200) {
