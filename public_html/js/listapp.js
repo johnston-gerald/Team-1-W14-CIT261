@@ -69,7 +69,8 @@ var listapp = (function() {
                 return list;
             }
             // Add the contents of lists[] to #lists:
-            var listDiv = document.createElement('div').setAttribute('id', 'lists');
+            var listDiv = document.createElement('div');
+            listDiv.setAttribute('id', 'lists');
             listDiv.appendChild(makeUL(lists));
             document.getElementById('content').appendChild(listDiv);
 
