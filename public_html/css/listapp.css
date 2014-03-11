@@ -5,7 +5,7 @@ body {
 }
 
 #main-menu {
-    position: fixed;
+    position: relative;
     height: 5em;
     top: 0px;
     width: 100%;
@@ -22,7 +22,7 @@ body {
     position: relative;
     list-style-type:none;
     margin:0;
-    margin-top: 5em; 
+    margin-top: 0; 
     padding:0;
 }
 
