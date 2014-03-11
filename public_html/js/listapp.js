@@ -1,5 +1,39 @@
 var listapp = (function() {
     return{
+        searchList: function (){
+            var searchfield = document.createElement("input");
+            searchfield.setAttribute('placeholder', 'Search');
+            searchfield.setAttribute('id', 'SearchKey');
+            var btn=document.createElement("button");
+            var t=document.createTextNode("Search");
+            btn.appendChild(t);
+            btn.setAttribute('onclick', 'listapp.doSearchList()');
+            document.getElementById('search').appendChild(searchfield);
+            document.getElementById('search').appendChild(btn);
+        },
+        doSearchList: function(){
+            // Search function will return the name and value from localstorage.
+            var keyword = document.getElementById("SearchKey");
+            
+            searchList(keyword);
+            
+            function searchList(keyword) {
+                keyword = keyword.toLowerCase();
+                var i;
+                for (i = 0; i < localStorage.length; i++){
+                    var name = localStorage.key(i);
+                    var value = localStorage.getItem(name);
+                    value = value.toLowerCase();
+                    var regexp = new RegExp(keyword, "gi");
+                    var mysearch = value.search(regexp);
+                    if (mysearch !== -1){
+                        return i + " " + name + " " + value;
+                    }
+                }
+
+            }
+ 
+        },
         addList: function(){
             var textfield = document.createElement("input");
             var list = document.createElement("li");
