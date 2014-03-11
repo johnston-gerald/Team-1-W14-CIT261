@@ -11,7 +11,7 @@ var listapp = (function() {
             btn.appendChild(t);
             btn.setAttribute('onclick', 'listapp.doSearchList()');
             myform.appendChild(searchfield);
-            myform.appendChild();
+            myform.appendChild(btn);
             document.getElementById('search').appendChild(myform);
         },
         doSearchList: function(){
