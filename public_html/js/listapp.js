@@ -1,7 +1,8 @@
 var listapp = (function() {
     return{
         searchList: function (){
-            document.getElementById("search").reset();
+            document.getElementById('search').innerHTML = "";
+            var myform = document.createElement("form");
             var searchfield = document.createElement("input");
             searchfield.setAttribute('placeholder', 'Search');
             searchfield.setAttribute('id', 'SearchKey');
@@ -9,8 +10,9 @@ var listapp = (function() {
             var t=document.createTextNode("Search");
             btn.appendChild(t);
             btn.setAttribute('onclick', 'listapp.doSearchList()');
-            document.getElementById('search').appendChild(searchfield);
-            document.getElementById('search').appendChild(btn);
+            myform.appendChild(searchfield);
+            myform.appendChild(();
+            document.getElementById('search').appendChild(myform);
         },
         doSearchList: function(){
             // Search function will return the name and value from localstorage.
