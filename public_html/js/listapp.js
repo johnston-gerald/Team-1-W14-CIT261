@@ -1,7 +1,7 @@
 var listapp = (function() {
     return{
         searchList: function (){
-            document.getElementById("Search").reset();
+            document.getElementById("search").reset();
             var searchfield = document.createElement("input");
             searchfield.setAttribute('placeholder', 'Search');
             searchfield.setAttribute('id', 'SearchKey');
