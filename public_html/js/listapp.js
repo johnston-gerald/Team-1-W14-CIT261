@@ -17,7 +17,7 @@ var listapp = (function() {
 
             request.onreadystatechange = function(){
                 if (request.readyState==4 && request.status==200) {
-                    //localStorage.lists = request.reponseText.lists;
+                    localStorage.lists = request.reponseText.lists;
                 }
             }
         },
@@ -32,13 +32,14 @@ var listapp = (function() {
         showLists: function (){
             
             //create lists array and sort alphabetically by default
-            var lists = [
-                "Shopping",
-                "To Do",
-                "Homework",
-                "Reminders",
-                "Work"
-            ].sort();
+            var lists = localStorage.lists;
+//                    [
+//                "Shopping",
+//                "To Do",
+//                "Homework",
+//                "Reminders",
+//                "Work"
+//            ].sort();
             //lists.reverse() will sort in descending order
 
             function makeUL(array) {
