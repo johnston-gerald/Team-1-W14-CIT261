@@ -56,11 +56,8 @@ body {
     
 }
 
-#search {
+#search button, input {
     margin-top: 5em; 
     position: relative;
-    margin: 5px;
-}
-#search button, input {
     margin: 5px;
 }
