@@ -38,7 +38,7 @@ var listapp = (function() {
             var textfield = document.createElement("input");
             var list = document.createElement("li");
             list.appendChild(textfield);
-            document.getElementById('lists-container').appendChild(list);
+            document.getElementById('content').appendChild(list);
         },
         login: function (){
             var data = {};
