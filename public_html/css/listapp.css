@@ -47,3 +47,10 @@ body {
     padding: 20px;
     float: right;
 }
+
+.g-signin {
+    position: relative;
+    top: 100px;
+    
+    
+}
