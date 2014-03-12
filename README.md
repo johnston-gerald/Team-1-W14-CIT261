@@ -5,3 +5,5 @@ Joseph Patterson can commit!
 Gerald Johnston can commit too!
 
 Adam Martin can commit too!
+
+Peter Wong can commit too :)
