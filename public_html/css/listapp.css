@@ -31,8 +31,15 @@ body {
     width:100%;
     height: 5em;
     border-bottom: solid 1px #CCC;
+    -webkit-transition: background-color 3s;
+    -moz-transition: background-color 3s;
+    -o-transition: background-color 3s;
+    -ms-transition: background-color 3s;
+    transition: background-color 3s;
 }
-
+#lists li:hover {
+background-color: #A7B526;
+}
 #lists ul li a {
     text-decoration: none;
     font-size: 2em;
