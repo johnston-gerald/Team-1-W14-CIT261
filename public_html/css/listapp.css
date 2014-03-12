@@ -41,8 +41,16 @@ body {
 
 #lists ul li a.list {
     float: left;
-
 }
+
+#lists ul li input {
+    height: 100%;
+    float: left;
+    width: 80%;
+    font-size: 2em;
+    padding: 14px;
+}
+
 #lists ul li span {
     font-size: 2em;
     padding: 20px;

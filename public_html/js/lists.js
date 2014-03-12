@@ -17,17 +17,17 @@ function makeUL(array) {
         var item = document.createElement('li');
         var href = document.createElement('a');
         var span = document.createElement('span');
-        
+
         // Set the contents:
         href.appendChild(document.createTextNode(array[i]));
-        
+
         // Set the URL and class
         href.setAttribute('href', '#');
         href.setAttribute('class', 'list');
         span.setAttribute('class', 'glyphicon glyphicon-chevron-right');
         item.appendChild(href);
         item.appendChild(span);
-        
+
         // Add it to the list:
         list.appendChild(item);
     }

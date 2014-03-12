@@ -38,23 +38,51 @@ var listapp = (function() {
  
         },
         addList: function(){
-            var textfield = document.createElement("input");
+            var list_name = document.createElement("input");
+            list_name.setAttribute('type', 'text');
+
+            var accept_button = document.createElement('span');
+            accept_button.setAttribute('class', 'glyphicon glyphicon-ok');
+            accept_button.setAttribute('onclick', 'listapp.saveNewList(this.parentElement.children[0].value)');
+
+            var cancel_button = document.createElement('span');
+            cancel_button.setAttribute('class', 'glyphicon glyphicon-remove');
+            cancel_button.setAttribute('onclick', 'this.parentElement.remove()');
+
             var list = document.createElement("li");
-            list.appendChild(textfield);
-            document.getElementById('content').appendChild(list);
+            list.appendChild(list_name);
+            list.appendChild(accept_button);
+            list.appendChild(cancel_button);
+
+            if(document.getElementById('lists').firstChild.firstChild){
+                var sibling = document.getElementById('lists').firstChild.firstChild;
+                var parentDiv = sibling.parentNode;
+                parentDiv.insertBefore(list, sibling);
+            } else {
+                document.getElementById('lists').firstChild.appendChild(list);
+            }
+        },
+        saveNewList: function(list_name){
+            var data = '';
+            if(list_name){
+                data += 'list_name='+ list_name + '&user_id='+localStorage.id;
+                var request = this.ajaxRequest('POST', 'php/new_list.php', data);
+                request.onreadystatechange = function(){
+                    if (request.readyState==4 && request.status==200) {
+                        listapp.getLists();
+                    }
+                }
+            }
         },
         login: function (){
             var data = {};
             data.id = localStorage.id;
             data.user_name = localStorage.user_name;
             data.email = localStorage.email;
-            console.log(data);
-            console.log(localStorage);
             var request = this.ajaxRequest('POST', 'php/get_user.php', data);
 
             request.onreadystatechange = function(){
                 if (request.readyState==4 && request.status==200) {
-                    //localStorage.lists = request.reponseText.lists;
                 }
             }
         },
@@ -66,64 +94,65 @@ var listapp = (function() {
                 }
             }
         },
-        showLists: function (){
-            
-            //create lists array and sort alphabetically by default
-            var lists = [
-                "Shopping",
-                "To Do",
-                "Homework",
-                "Reminders",
-                "Work"
-            ].sort();
-            //lists.reverse() will sort in descending order
-
-            function makeUL(array) {
-                // Create the list element:
-                var list = document.createElement('ul');
-
-                for(var i = 0; i < array.length; i++) {
-                    // Create the list item:
-                    var item = document.createElement('li');
-                    var href = document.createElement('a');
-                    var span = document.createElement('span');
-
-                    // Set the contents:
-                    href.appendChild(document.createTextNode(array[i]));
-
-                    // Set the URL and class
-                    href.setAttribute('href', '#');
-                    href.setAttribute('class', 'list');
-                    span.setAttribute('class', 'glyphicon glyphicon-chevron-right');
-                    item.appendChild(href);
-                    item.appendChild(span);
-
-                    // Add it to the list:
-                    list.appendChild(item);
-                }
-
-                // Return the list:
-                return list;
+        getLists: function (){
+            while (document.getElementById('content').firstChild) {
+                document.getElementById('content').removeChild(document.getElementById('content').firstChild);
             }
             // Add the contents of lists[] to #lists:
             var listDiv = document.createElement('div');
             listDiv.setAttribute('id', 'lists');
-            listDiv.appendChild(makeUL(lists));
-            document.getElementById('content').appendChild(listDiv);
 
-            for(i=0;i < localStorage.lists;i++){
-
+            //Get all lists
+            var request = this.ajaxRequest('POST', 'php/get_lists.php', 'user_id='+localStorage.id);
+            request.onreadystatechange = function(){
+                if (request.readyState==4 && request.status==200) {
+                    //create lists array and sort alphabetically by default
+                    if(request.responseText.length){
+                        var lists = JSON.parse(request.responseText);
+                        listDiv.appendChild(listapp.makeUL(lists));
+                    } else {
+                        listDiv.appendChild(document.createElement('ul'));
+                    }
+                    document.getElementById('content').appendChild(listDiv);
+                }
             }
-//            var request = this.ajaxRequest('GET', 'include/lists.html');
-//            request.onreadystatechange = function(){
-//                if (request.readyState==4 && request.status==200) {
-//                    document.getElementById("content").innerHTML = request.responseText;
-//                }
-//            }
+        },
+        makeUL: function(lists) {
+            // Create the list element:
+            lists.sort(function(a,b) {
+                if(a[1] < b[1]) return -1;
+                if(a[1] > b[1]) return 1;
+                return 0;
+            });
+            var list = document.createElement('ul');
+
+            for(var i = 0; i < lists.length; i++) {
+                // Create the list item:
+                var item = document.createElement('li');
+                var href = document.createElement('a');
+                var span = document.createElement('span');
+
+                // Set the contents:
+                href.appendChild(document.createTextNode(lists[i][1]));
+
+                // Set the URL and class
+                href.setAttribute('href', '#'+lists[i][0]);
+                href.setAttribute('class', 'list');
+                span.setAttribute('class', 'glyphicon glyphicon-chevron-right');
+                item.appendChild(href);
+                item.appendChild(span);
+
+                // Add it to the list:
+                list.appendChild(item);
+            }
+
+            // Return the list:
+            return list;
         },
         ajaxRequest: function(method, url, data){
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open(method,url,true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(data);
             return xmlhttp;
         }
