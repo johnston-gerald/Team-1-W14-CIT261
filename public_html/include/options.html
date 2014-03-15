@@ -1,27 +1,74 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Menu APP</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <style>
-            
-        </style>
-    </head>
-    <body>
-        
-        <div id="header">
-        <button type="button" onclick=""><----</button>
-        Options
-        <button type="button" onclick="">Menu</button>
-        </div>
-        
+<html lang="en">
+<head>
+<title>Options Popup</title>
+<meta charset="UTF-8">
+<meta name="author" content="Adam">
+<style>
+//opening and closing the menu
+    .clasp {
+        text-align:center;
+        font-size: 500%;
+    }
+    .hiding {
+        display:none;
+    } 
+//style for buttons/text
+#header {
+    text-align: center;
+    font-size: 500%;
+}
+#div1 { 
+    width: 100%; height: 50px; background-color: lightgray; 
+    text-align: center; font-size: 200%;
+}
+h1 {
+    width: 100%; background-color: lightgray; 
+    text-align: center; font-size: 400%
+}
+#div2 { 
+    width: 100%; height: 150px; background-color: lightgrey; 
+    text-align: center; font-size: 200%;
+}
+#div3 { width: 100%; height: 150px; background-color: lightgray; 
+        text-align: center; font-size: 200%;
+}
+button {
+    width: 32%; height: 75px; font-size: 50%
+}
+button:hover {
+    font-weight:bold; color: blue;
+}
+</style>
+<script style="JavaScript">
+function hidingOpen() {
+document.getElementById('hide').style.display = "block";
+document.getElementById('clasp').innerHTML="<a href=\"javascript:hidingClose();\"><button type=\"button\">Close</button></a>";
+document.getElementById('display').style.display = "none";
+}
+function hidingClose() {
+document.getElementById('hide').style.display = "none";
+document.getElementById('clasp').innerHTML="<a href=\"javascript:hidingOpen();\"><button type=\"button\">Menu</button></a>";
+document.getElementById('display').style.display = "block";
+} 
+</script>
+</head>
+<body>
+<div id="header">
+        <div id="clasp" class="clasp"><a href="javascript:hidingOpen();"><button type="button">Menu</button></a></div>
+</div>
+<div id="hide" class="hiding">
         <div id="div1"><input type="checkbox" id="box1">Hide checked list item</div>
         <h1>Sort list</h1>
         <div id="div2">
-            <input type="checkbox" id="box2" onclick="" checked>Ascending<br>
-            <input type="checkbox" id="box3" disabled>Descending<br>
-            <input type="checkbox" id="box4">By Date<br>
-            <input type="checkbox" id="box5">Alphabetic<br></div>
-    </body>
+        <input type="checkbox" id="box2" onclick="" checked>Ascending<br>
+        <input type="checkbox" id="box3" disabled>Descending<br>
+        <input type="checkbox" id="box4">By Date<br>
+        <input type="checkbox" id="box5">Alphabetic<br></div>
+</div>
+    <div id="display">
+        <h1>THIS IS A LIST!</h1>
+        This has list content in it.
+    </div>
+</body>
 </html>
