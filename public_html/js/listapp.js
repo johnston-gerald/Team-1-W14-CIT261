@@ -111,6 +111,55 @@ var listapp = (function() {
                 request.onreadystatechange = function(){
                     if (request.readyState===4 && request.status===200) {
                         listapp.getListItems(localStorage.currentListID);
+                    }    
+                }    
+            }
+        },
+        delete_list: function (list_id){
+            data = 'list_id='+list_id;
+            var request = this.ajaxRequest('POST', 'php/delete_list.php', data);
+            request.onreadystatechange = function(){
+                if (request.readyState==4 && request.status==200) {
+                    listapp.getLists();
+                }
+            }
+        },
+        show_rename_list: function (list_id){
+            //Get Old list
+            list_input = document.querySelector('[data-list-id="'+list_id+'"]');
+
+            var list_name = document.createElement("input");
+            list_name.setAttribute('type', 'text');
+            list_name.setAttribute('value', list_input.firstChild.innerText);
+
+            var accept_button = document.createElement('span');
+            accept_button.setAttribute('class', 'glyphicon glyphicon-ok');
+            accept_button.setAttribute('onclick', 'listapp.rename_list('+list_id+', this.parentElement.firstChild.value)');
+
+            var cancel_button = document.createElement('span');
+            cancel_button.setAttribute('class', 'glyphicon glyphicon-remove');
+            cancel_button.setAttribute('onclick', 'listapp.getLists()');
+
+            var list = document.createElement("li");
+            list.appendChild(list_name);
+            list.appendChild(accept_button);
+            list.appendChild(cancel_button);
+
+            list_input.parentElement.insertBefore(list, list_input);
+
+            list_name.focus();
+            list_name.value = list_name.value;
+
+            //Remove old list
+            list_input.parentElement.removeChild(list_input);
+        },
+        rename_list: function(list_id, list_name){
+            if(list_name){
+                data = 'list_name='+ list_name + '&list_id='+list_id;
+                var request = this.ajaxRequest('POST', 'php/rename_list.php', data);
+                request.onreadystatechange = function(){
+                    if (request.readyState==4 && request.status==200) {
+                        listapp.getLists();
                     }
                 }
             }
@@ -204,7 +253,10 @@ var listapp = (function() {
                 // Create the list item:
                 var item = document.createElement('li');
                 var href = document.createElement('a');
-                var span = document.createElement('span');
+                var rename_list = document.createElement('span');
+                var delete_list = document.createElement('span');
+
+                item.setAttribute('data-list-id', lists[i][0]);
 
                 // Set the contents:
                 href.appendChild(document.createTextNode(lists[i][1]));
@@ -216,9 +268,16 @@ var listapp = (function() {
                 }
                 href.setAttribute('id', 'Lists'+lists[i][0]);
                 href.setAttribute('class', 'list');
-                span.setAttribute('class', 'glyphicon glyphicon-chevron-right');
+
+                rename_list.setAttribute('class', 'glyphicon glyphicon-pencil');
+                rename_list.setAttribute('onclick', 'listapp.show_rename_list(this.parentElement.getAttribute("data-list-id"));');
+
+                delete_list.setAttribute('class', 'glyphicon glyphicon-trash');
+                delete_list.setAttribute('onclick', 'listapp.delete_list(this.parentElement.getAttribute("data-list-id"));');
+
                 item.appendChild(href);
-                item.appendChild(span);
+                item.appendChild(delete_list);
+                item.appendChild(rename_list);
 
                 // Add it to the list:
                 list.appendChild(item);
