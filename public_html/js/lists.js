@@ -16,7 +16,8 @@ function makeUL(array) {
         // Create the list item:
         var item = document.createElement('li');
         var href = document.createElement('a');
-        var span = document.createElement('span');
+        var rename_list = document.createElement('span');
+        var delete_list = document.createElement('span');
 
         // Set the contents:
         href.appendChild(document.createTextNode(array[i]));
@@ -24,9 +25,11 @@ function makeUL(array) {
         // Set the URL and class
         href.setAttribute('href', '#');
         href.setAttribute('class', 'list');
-        span.setAttribute('class', 'glyphicon glyphicon-chevron-right');
+        rename_list.setAttribute('class', 'glyphicon glyphicon-chevron-pencil');
+        delete_list.setAttribute('class', 'glyphicon glyphicon-chevron-trash');
         item.appendChild(href);
-        item.appendChild(span);
+        item.appendChild(rename_list);
+        item.appendChild(delete_list);
 
         // Add it to the list:
         list.appendChild(item);
