@@ -287,6 +287,7 @@ var listapp = (function() {
             return list;
         },
         ajaxRequest: function(method, url, data){
+            data = JSON.stringify(data);
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open(method,url,true);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
