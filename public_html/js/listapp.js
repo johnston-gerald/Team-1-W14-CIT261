@@ -1,6 +1,7 @@
 var listapp = (function() {
     return{
         searchList: function (){
+            document.getElementById('search').style.height="5em";
             document.getElementById('search').innerHTML = "";
             var myform = document.createElement("form");
             var searchfield = document.createElement("input");

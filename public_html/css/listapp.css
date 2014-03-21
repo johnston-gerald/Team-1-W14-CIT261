@@ -80,8 +80,24 @@ background-color: #A7B526;
     
     
 }
-
-#search button, input {
+#search {
     position: relative;
-    margin: 5px;
+    height: 0;
+    width: 100%;
+
 }
+#search input {
+    margin: 5px;
+    height: 90%;
+    float: left;
+    width: 80%;
+    font-size: 2em;
+}
+#search button {
+    width: 18%;
+    height: 90%;
+    float: right;
+    margin: 5px;
+    font-size: 2em;
+}
+
