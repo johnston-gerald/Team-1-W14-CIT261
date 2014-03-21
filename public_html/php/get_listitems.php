@@ -8,7 +8,7 @@
         exit();
     }
 
-    $user = $db->query("SELECT `list_items`.`list_item_id`, `list_items`.`title`, `list_items`.`is_deleted` FROM `list_items` WHERE `list_items`.`list_id` = '" . $_POST['list_id'] . "'");
+    $user = $db->query("SELECT `list_items`.`list_item_id`, `list_items`.`title`, `list_items`.`is_deleted`, `list_items`.`status`  FROM `list_items` WHERE `list_items`.`list_id` = '" . $_POST['list_id'] . "'");
 
     if($user->num_rows){
 		echo json_encode($user->fetch_all());

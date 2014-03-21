@@ -50,6 +50,8 @@ background-color: #A7B526;
     float: left;
 }
 
+
+
 #lists ul li input {
     height: 100%;
     float: left;
@@ -62,6 +64,14 @@ background-color: #A7B526;
     font-size: 2em;
     padding: 20px;
     float: right;
+}
+
+#lists ul li input[type="checkbox"] {
+    font-size: 2em;
+    padding: 0;
+    float: right;
+    height: 2em;
+    width: 2em;
 }
 
 .g-signin {

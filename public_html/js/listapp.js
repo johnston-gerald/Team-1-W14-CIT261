@@ -164,6 +164,28 @@ var listapp = (function() {
                 }
             }
         },
+        complete_itemitem: function(list_item_id){
+            if(list_item_id){
+                data = 'list_item_id='+ list_item_id;
+                var request = this.ajaxRequest('POST', 'php/complete_listitem.php', data);
+                request.onreadystatechange = function(){
+                    if (request.readyState==4 && request.status==200) {
+                        listapp.getListItems(localStorage.currentListID);
+                    }
+                }
+            }
+        },
+        resetstatus_itemitem: function(list_item_id){
+            if(list_item_id){
+                data = 'list_item_id='+ list_item_id;
+                var request = this.ajaxRequest('POST', 'php/resetstatus_listitem.php', data);
+                request.onreadystatechange = function(){
+                    if (request.readyState==4 && request.status==200) {
+                        listapp.getListItems(localStorage.currentListID);
+                    }
+                }
+            }
+        },
         login: function (){
             var data = {};
             data.id = localStorage.id;
@@ -274,10 +296,24 @@ var listapp = (function() {
 
                 delete_list.setAttribute('class', 'glyphicon glyphicon-trash');
                 delete_list.setAttribute('onclick', 'listapp.delete_list(this.parentElement.getAttribute("data-list-id"));');
+                
 
                 item.appendChild(href);
                 item.appendChild(delete_list);
                 item.appendChild(rename_list);
+                
+                if (localStorage.currentPage==="ListItems"){
+                    var checkbox = document.createElement('INPUT');
+                    checkbox.setAttribute('type', 'checkbox');
+                    checkbox.setAttribute('class', 'completeBox');
+                    if (lists[i][3]==="Completed"){
+                        checkbox.setAttribute('checked', 'checked');
+                        checkbox.setAttribute('onclick', 'listapp.resetstatus_itemitem(this.parentElement.getAttribute("data-list-id"));');
+                    }else{
+                        checkbox.setAttribute('onclick', 'listapp.complete_itemitem(this.parentElement.getAttribute("data-list-id"));');
+                    }
+                    item.appendChild(checkbox);
+                }
 
                 // Add it to the list:
                 list.appendChild(item);
