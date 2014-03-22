@@ -8,4 +8,4 @@
         exit();
     }
 
-    $user = $db->query("UPDATE `lists` SET `title` =  '" . $_POST['list_name'] . "' WHERE `list_id` = " . $_POST['list_id']) or die(mysqli_error($db));
+    $user = $db->query("UPDATE `lists` SET `list_title` =  '" . $_POST['list_name'] . "' WHERE `list_id` = " . $_POST['list_id']) or die(mysqli_error($db));

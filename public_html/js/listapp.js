@@ -19,14 +19,39 @@ var listapp = (function() {
             // Search function will return the name and value from localstorage.
             var keyword = document.getElementById("SearchKey");
             
-            searchList(keyword);
+
+            jsonData = localStorage.alldata;
+            //var dataArray = JSON.parse(jsonData);
             
+            // dataArray.filter(function (person) { return dataArray.title == "sushi" });
+
+            var resultlist = new Array();
+            var i = 0;
+            var j = 0;
+            
+            for (i = 0; i < dataArray.length; i++){
+                value = jsonData[i].title;
+                value = value.toLowerCase();
+                var regexp = new RegExp(keyword, "gi");
+                var mysearch = value.search(regexp);
+                if (mysearch !== -1){
+                    resultlist[j][0] =  jsonData[i].title;
+                    resultlist[j][0] =  jsonData[i].title;
+                    resultlist[j][0] =  jsonData[i].title;
+                    resultlist[j][0] =  jsonData[i].title;
+                    j++;
+                }       
+
+            }
+     
+       
+  /*    
             function searchList(keyword) {
                 keyword = keyword.toLowerCase();
                 var i;
-                for (i = 0; i < localStorage.length; i++){
-                    var name = localStorage.key(i);
-                    var value = localStorage.getItem(name);
+                for (i = 0; i < dataArray.length; i++){
+                    var name = dataArray.key(i);
+                    var value = dataArray.getItem(name);
                     value = value.toLowerCase();
                     var regexp = new RegExp(keyword, "gi");
                     var mysearch = value.search(regexp);
@@ -35,7 +60,7 @@ var listapp = (function() {
                     }
                 }
 
-            }
+            } */
  
         },
         addList: function(){
@@ -193,7 +218,7 @@ var listapp = (function() {
             var request = this.ajaxRequestjson('POST', 'php/get_alldata.php', data);
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
-                        localStorage.setItem("initdata", request.responseText);
+                        localStorage.setItem("alldata", request.responseText);
                 }
             };
         },

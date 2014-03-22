@@ -8,7 +8,7 @@
         exit();
     }
 
-    $user = $db->query("SELECT `lists`.`list_id`, `lists`.`title`, `lists`.`is_deleted` FROM `lists` JOIN `user_list` ON `lists`.`list_id` = `user_list`.`list_id` WHERE `user_list`.`user_id` = '" . $_POST['user_id'] . "' AND `user_list`.`access_level` > 0");
+    $user = $db->query("SELECT `lists`.`list_id`, `lists`.`list_title`, `lists`.`is_deleted` FROM `lists` JOIN `user_list` ON `lists`.`list_id` = `user_list`.`list_id` WHERE `user_list`.`user_id` = '" . $_POST['user_id'] . "' AND `user_list`.`access_level` > 0");
 
     if($user->num_rows){
 		echo json_encode($user->fetch_all());
