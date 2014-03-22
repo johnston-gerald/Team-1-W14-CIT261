@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+
+<title>Web Workers Demo</title>
+    <script>
+        //web worker
+        function workerLoop() {
+            var worker = new Worker('bigLoop.js');
+            worker.onmessage = function (event) {
+                alert("Completed " + event.data + " iterations" );
+            };
+
+            //error handling
+            worker.onerror = function (event) {
+                console.log(event.message, event);
+            };
+        }
+
+        //no web worker
+        function bigLoop(){
+            var message = "";
+            for (var i = 0; i <= 5000000000; i += 1){
+                var j = i;
+            }
+            message = numberWithCommas(j);
+            alert("Completed " + message + " iterations" );
+        }
+        
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        //hello message
+        function sayHello(){
+            alert("Hello!" );
+        }
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <main>
+            <h1>Web Workers Demo</h1>
+            <p>This demo runs a for loop with many iterations (5 billion, to be precise).
+                The first button handles the loop using a web worker; the second button does not 
+                use a web worker.</p>
+            <p>Web workers are designed to run scripts on separate threads. Therefore, running 
+                the script using the first button will be more efficient and should not make 
+                the page unresponsive. Since the second button runs the script on a single thread ... 
+                well, let's just say your browser won't like it; click at your own risk!</p>
+            <p>After clicking the first or second button, try the third button to see how responsive 
+                the page is.</p><br>
+            <div class="center">
+                <input type="button" onclick="workerLoop();" value="Big Loop (web worker)" /><br><br>
+                <input type="button" onclick="bigLoop();" value="Big Loop (single thread)" /><br><br>
+                <input type="button" onclick="sayHello();" value="Click here to see how responsive the page is." />
+            </div>
+        </main>
+    </div>
+</body>
+</html>
