@@ -192,7 +192,8 @@ var listapp = (function() {
             data.id = localStorage.id;
             data.user_name = localStorage.user_name;
             data.email = localStorage.email;
-            var request = this.ajaxRequest('POST', 'php/get_user.php', data);
+                      
+            var request = this.ajaxRequestjson('POST', 'php/get_user.php', data);
 
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
@@ -337,6 +338,14 @@ var listapp = (function() {
             xmlhttp.open(method,url,true);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(data);
+            return xmlhttp;
+        },
+        ajaxRequestjson: function(method, url, data){
+            myData = JSON.stringify(data);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open(method,url,true);
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.send(myData);
             return xmlhttp;
         }
     };
