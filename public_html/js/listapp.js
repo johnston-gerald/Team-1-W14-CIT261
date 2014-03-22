@@ -187,6 +187,16 @@ var listapp = (function() {
                 }
             }
         },
+        get_alldata: function (){
+            var data = {};
+            data.id = localStorage.id;                     
+            var request = this.ajaxRequestjson('POST', 'php/get_alldata.php', data);
+            request.onreadystatechange = function(){
+                if (request.readyState===4 && request.status===200) {
+                        localStorage.setItem("initdata", request.responseText);
+                }
+            };
+        },
         login: function (){
             var data = {};
             data.id = localStorage.id;
@@ -197,9 +207,10 @@ var listapp = (function() {
 
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
-                        localStorage.setItem("initdata", request.responseText);
+                    listapp.get_alldata();
+
                 }
-            }
+            };
         },
         showMenu: function (){
             var request = this.ajaxRequest('GET', 'include/menu.html');
