@@ -18,31 +18,30 @@ return {
      *   other authentication information.
      */
     onSignInCallback: function(authResult) {
-        gapi.client.load('plus','v1', function(){
-            $('#authResult').html('Auth Result:<br/>');
+      gapi.client.load('plus','v1', function(){
+        $('#authResult').html('Auth Result:<br/>');
+        for (var field in authResult) {
+          $('#authResult').append(' ' + field + ': ' +
+              authResult[field] + '<br/>');
+        }
+        if (authResult['access_token']) {
+          //$('#authOps').show('slow');
+          $('#gConnect').hide();
+          helper.profile();
+          //helper.people();
+          //starts app
+          startApp();
 
-            for (var field in authResult) {
-                $('#authResult').append(' ' + field + ': ' +
-                authResult[field] + '<br/>');
-            }
-
-            if (authResult['access_token']) {
-                $('#authOps').show('slow');
-                $('#gConnect').hide();
-                helper.profile();
-                //starts app
-                startApp();                        
-            } else if (authResult['error']) {
-                // There was an error, which means the user is not signed in.
-                // As an example, you can handle by writing to the console:
-                console.log('There was an error: ' + authResult['error']);
-                $('#authResult').append('Logged out');
-                $('#authOps').hide('slow');
-                $('#gConnect').show();
-            }
-
-            //console.log('authResult', authResult);
-        });
+        } else if (authResult['error']) {
+          // There was an error, which means the user is not signed in.
+          // As an example, you can handle by writing to the console:
+          console.log('There was an error: ' + authResult['error']);
+          $('#authResult').append('Logged out');
+          $('#authOps').hide('slow');
+          $('#gConnect').show();
+        }
+        console.log('authResult', authResult);
+      });
     },
     /**
      * Calls the OAuth2 endpoint to disconnect the app for the user.
@@ -62,9 +61,8 @@ return {
                 $('#profile').empty();
                 $('#authResult').empty();
                 $('#gConnect').show();
-                localStorage.removeItem("user_name");
-                localStorage.removeItem("id");
-                localStorage.removeItem("email");
+                localStorage.clear();
+                listapp.clear();
             },
             error: function(e) {
               console.log(e);

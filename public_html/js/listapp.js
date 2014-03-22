@@ -196,6 +196,7 @@ var listapp = (function() {
 
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
+                        localStorage.setItem("initdata", request.responseText);
                 }
             }
         },
@@ -227,6 +228,7 @@ var listapp = (function() {
                     //create lists array and sort alphabetically by default
                     if(request.responseText.length){
                         var lists = JSON.parse(request.responseText);
+                        localStorage.setItem("lists", request.responseText);
                         listDiv.appendChild(listapp.makeUL(lists));
                     } else {
                         listDiv.appendChild(document.createElement('ul'));
@@ -253,6 +255,7 @@ var listapp = (function() {
                     //create lists array and sort alphabetically by default
                     if(request.responseText.length){
                         var lists = JSON.parse(request.responseText);
+                        localStorage.setItem("listitems", request.responseText);
                         listDiv.appendChild(listapp.makeUL(lists));
                     } else {
                         listDiv.appendChild(document.createElement('ul'));
@@ -261,6 +264,12 @@ var listapp = (function() {
                 }
             }
         },
+        clear: function (){
+            var content = document.getElementById("content");
+            content.outerHTML = "";
+            var menu = document.getElementById("main-menu");
+            menu.outerHTML = "<h1>List App</h1>";           
+        },        
         makeUL: function(lists) {
             
             
