@@ -2,8 +2,9 @@ var listapp = (function() {
     return{
         searchList: function (){
             document.getElementById('search').style.height="5em";
+            document.getElementById('search').style.margin="5px";
             document.getElementById('search').innerHTML = "";
-            var myform = document.createElement("form");
+            var myform = document.createElement("div");
             var searchfield = document.createElement("input");
             searchfield.setAttribute('placeholder', 'Search');
             searchfield.setAttribute('id', 'SearchKey');
@@ -17,50 +18,50 @@ var listapp = (function() {
         },
         doSearchList: function(){
             // Search function will return the name and value from localstorage.
-            var keyword = document.getElementById("SearchKey");
-            
+            var keyword = document.getElementById("SearchKey").value;
+            keyword = keyword.toLowerCase();
+            var currentPage = "SearchItems";
+            localStorage.setItem("currentPage", currentPage);
 
             jsonData = localStorage.alldata;
-            //var dataArray = JSON.parse(jsonData);
+            var dataArray = new Array();
+            var dataArray = JSON.parse(jsonData);
+            console.log(dataArray);
             
             // dataArray.filter(function (person) { return dataArray.title == "sushi" });
 
             var resultlist = new Array();
             var i = 0;
-            var j = 0;
+
             
+            console.log(dataArray.length);
             for (i = 0; i < dataArray.length; i++){
-                value = jsonData[i].title;
+                
+                value = dataArray[i].title;
                 value = value.toLowerCase();
+                console.log(value + " = " + keyword);
                 var regexp = new RegExp(keyword, "gi");
-                var mysearch = value.search(regexp);
-                if (mysearch !== -1){
-                    resultlist[j][0] =  jsonData[i].title;
-                    resultlist[j][0] =  jsonData[i].title;
-                    resultlist[j][0] =  jsonData[i].title;
-                    resultlist[j][0] =  jsonData[i].title;
-                    j++;
+                if (regexp.test(value)){
+                    var tmparray = new Array();
+                    tmparray[0] =  dataArray[i].list_item_id;
+                    tmparray[1] =  dataArray[i].title;
+                    tmparray[2] =  "0";
+                    tmparray[3] =  dataArray[i].status;
+                    resultlist.push(tmparray);
+                    console.log(tmparray);
+
                 }       
 
             }
-     
-       
-  /*    
-            function searchList(keyword) {
-                keyword = keyword.toLowerCase();
-                var i;
-                for (i = 0; i < dataArray.length; i++){
-                    var name = dataArray.key(i);
-                    var value = dataArray.getItem(name);
-                    value = value.toLowerCase();
-                    var regexp = new RegExp(keyword, "gi");
-                    var mysearch = value.search(regexp);
-                    if (mysearch !== -1){
-                        return i + " " + name + " " + value;
-                    }
-                }
-
-            } */
+            console.log(resultlist);
+            while (document.getElementById('content').firstChild) {
+                document.getElementById('content').removeChild(document.getElementById('content').firstChild);
+            }
+            var listDiv = document.createElement('div');
+            listDiv.setAttribute('id', 'lists');
+            listDiv.appendChild(document.createElement('ul'));
+            listDiv.appendChild(listapp.makeUL(resultlist));
+            document.getElementById('content').appendChild(listDiv);           
  
         },
         addList: function(){

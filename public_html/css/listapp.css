@@ -88,16 +88,16 @@ background-color: #A7B526;
 }
 #search input {
     margin: 5px;
-    height: 90%;
+    height: 60%;
     float: left;
-    width: 80%;
-    font-size: 2em;
+    width: 60%;
+    font-size: 1.5em;
 }
 #search button {
-    width: 18%;
+    width: 25%;
     height: 90%;
     float: right;
     margin: 5px;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 

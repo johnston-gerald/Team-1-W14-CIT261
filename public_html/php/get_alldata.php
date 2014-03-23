@@ -11,7 +11,7 @@ if ($conn->connect_error) {
   trigger_error('Database connection failed: '  . $conn->connect_error, E_USER_ERROR);
 }
 $sql="
-    SELECT lists.list_id,user_list.access_level,lists.title,list_item_id,list_items.title,list_items.status FROM `user_list` 
+    SELECT lists.list_id,user_list.access_level,lists.list_title,list_item_id,list_items.title,list_items.status FROM `user_list` 
     JOIN `lists` ON `lists`.`list_id` = `user_list`.`list_id` 
     JOIN `list_items` ON `list_items`.`list_id` = `lists`.`list_id` 
     WHERE user_id = " . $data['id'] . " AND lists.is_deleted = 0";    
