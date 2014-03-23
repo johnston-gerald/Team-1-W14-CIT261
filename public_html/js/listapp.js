@@ -215,10 +215,6 @@ var listapp = (function() {
         },
         get_alldata: function (){
             var data = {};
-            while (!localStorage.id){
-                //sleep("500");
-                
-            }
             data.id = localStorage.id;                     
             var request = this.ajaxRequestjson('POST', 'php/get_alldata.php', data);
             request.onreadystatechange = function(){
