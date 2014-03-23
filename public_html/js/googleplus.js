@@ -108,6 +108,8 @@ return {
                 localStorage.setItem("user_name", profile.displayName);
                 localStorage.setItem("id", profile.id);
                 localStorage.setItem("email", email);
+                //starts app
+                startApp();
                 // Retrieve
           } else {
             document.getElementById("result").innerHTML="Sorry, your browser does not support Web Storage...";
@@ -140,8 +142,7 @@ $(document).ready(function() {
  */
 function onSignInCallback(authResult) {
   helper.onSignInCallback(authResult);
-  //starts app
-  startApp();
+
 }
 
 function startApp(){
