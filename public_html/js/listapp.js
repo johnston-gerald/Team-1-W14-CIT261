@@ -242,6 +242,7 @@ var listapp = (function() {
             var request = this.ajaxRequest('GET', 'include/menu.html');
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
+                    document.getElementById("main-menu").innerHTML = "";
                     document.getElementById("main-menu").innerHTML = request.responseText;
                 }
             }
@@ -304,11 +305,11 @@ var listapp = (function() {
         },
         clear: function (){
             var content = document.getElementById("content");
-            content.outerHTML = "";
+            content.innerHTML = "";
             var search = document.getElementById("search");
-            search.outerHTML = "";
+            search.innerHTML = "";
             var menu = document.getElementById("main-menu");
-            menu.outerHTML = "<h1>List App</h1>";           
+            menu.innerHTML = "<h1>List App</h1>";           
         },        
         makeUL: function(lists) {
             
