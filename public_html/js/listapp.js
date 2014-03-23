@@ -352,7 +352,7 @@ var listapp = (function() {
                 item.appendChild(delete_list);
                 item.appendChild(rename_list);
                 
-                if (localStorage.currentPage==="ListItems"){
+                if ((localStorage.currentPage==="ListItems") || (localStorage.currentPage==="SearchItems")){
                     var checkbox = document.createElement('INPUT');
                     checkbox.setAttribute('type', 'checkbox');
                     checkbox.setAttribute('class', 'completeBox');
