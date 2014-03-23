@@ -216,7 +216,7 @@ var listapp = (function() {
         get_alldata: function (){
             var data = {};
             while (!localStorage.id){
-                sleep("500");
+                //sleep("500");
                 
             }
             data.id = localStorage.id;                     
