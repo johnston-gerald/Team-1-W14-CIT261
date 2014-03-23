@@ -127,7 +127,7 @@ var listapp = (function() {
                     if (request.readyState===4 && request.status===200) {
                         listapp.getLists();
                     }
-                }
+                };
             }
         },
         saveNewListItem: function(list_item_name){
@@ -197,9 +197,13 @@ var listapp = (function() {
                 var request = this.ajaxRequest('POST', 'php/complete_listitem.php', data);
                 request.onreadystatechange = function(){
                     if (request.readyState==4 && request.status==200) {
-                        listapp.getListItems(localStorage.currentListID);
+                        if (localStorage.currentPage==="SearchItems"){
+                            listapp.doSearchList()
+                        }else{
+                            listapp.getListItems(localStorage.currentListID);
+                        }
                     }
-                }
+                };
             }
         },
         resetstatus_itemitem: function(list_item_id){
@@ -207,10 +211,12 @@ var listapp = (function() {
                 data = 'list_item_id='+ list_item_id;
                 var request = this.ajaxRequest('POST', 'php/resetstatus_listitem.php', data);
                 request.onreadystatechange = function(){
-                    if (request.readyState==4 && request.status==200) {
-                        listapp.getListItems(localStorage.currentListID);
-                    }
-                }
+                        if (localStorage.currentPage==="SearchItems"){
+                            listapp.doSearchList()
+                        }else{
+                            listapp.getListItems(localStorage.currentListID);
+                        }
+                };
             }
         },
         get_alldata: function (){
