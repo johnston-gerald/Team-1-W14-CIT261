@@ -305,6 +305,8 @@ var listapp = (function() {
         clear: function (){
             var content = document.getElementById("content");
             content.outerHTML = "";
+            var search = document.getElementById("search");
+            search.outerHTML = "";
             var menu = document.getElementById("main-menu");
             menu.outerHTML = "<h1>List App</h1>";           
         },        
