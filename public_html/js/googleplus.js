@@ -29,8 +29,7 @@ return {
           $('#gConnect').hide();
           helper.profile();
           //helper.people();
-          //starts app
-          startApp();
+
 
         } else if (authResult['error']) {
           // There was an error, which means the user is not signed in.
@@ -141,6 +140,8 @@ $(document).ready(function() {
  */
 function onSignInCallback(authResult) {
   helper.onSignInCallback(authResult);
+  //starts app
+  startApp();
 }
 
 function startApp(){
