@@ -151,6 +151,15 @@ var listapp = (function() {
                 }
             }
         },
+        delete_list_item: function (list_item_id){
+            data = 'list_item_id='+list_item_id;
+            var request = this.ajaxRequest('POST', 'php/delete_list_item.php', data);
+            request.onreadystatechange = function(){
+                if (request.readyState==4 && request.status==200) {
+                    listapp.getListItems(localStorage.currentListID);
+                }
+            }
+        },
         show_rename_list: function (list_id){
             //Get Old list
             list_input = document.querySelector('[data-list-id="'+list_id+'"]');
@@ -180,6 +189,35 @@ var listapp = (function() {
             //Remove old list
             list_input.parentElement.removeChild(list_input);
         },
+        show_rename_list_item: function (list_item_id){
+            //Get Old list
+            list_item_input = document.querySelector('[data-list-item-id="'+list_item_id+'"]');
+
+            var list_item_name = document.createElement("input");
+            list_item_name.setAttribute('type', 'text');
+            list_item_name.setAttribute('value', list_item_input.firstChild.innerText);
+
+            var accept_button = document.createElement('span');
+            accept_button.setAttribute('class', 'glyphicon glyphicon-ok');
+            accept_button.setAttribute('onclick', 'listapp.rename_list_item('+list_item_id+', this.parentElement.firstChild.value)');
+
+            var cancel_button = document.createElement('span');
+            cancel_button.setAttribute('class', 'glyphicon glyphicon-remove');
+            cancel_button.setAttribute('onclick', 'listapp.getListItems('+localStorage.currentListID+')');
+
+            var list_item = document.createElement("li");
+            list_item.appendChild(list_item_name);
+            list_item.appendChild(accept_button);
+            list_item.appendChild(cancel_button);
+
+            list_item_input.parentElement.insertBefore(list_item, list_item_input);
+
+            list_item_name.focus();
+            list_item_name.value = list_item_name.value;
+
+            //Remove old list
+            list_item_input.parentElement.removeChild(list_item_input);
+        },
         rename_list: function(list_id, list_name){
             if(list_name){
                 data = 'list_name='+ list_name + '&list_id='+list_id;
@@ -187,6 +225,17 @@ var listapp = (function() {
                 request.onreadystatechange = function(){
                     if (request.readyState==4 && request.status==200) {
                         listapp.getLists();
+                    }
+                }
+            }
+        },
+        rename_list_item: function(list_item_id, list_item_name){
+            if(list_item_name){
+                data = 'list_item_name='+ list_item_name + '&list_item_id='+list_item_id;
+                var request = this.ajaxRequest('POST', 'php/rename_list_item.php', data);
+                request.onreadystatechange = function(){
+                    if (request.readyState==4 && request.status==200) {
+                        listapp.getListItems(localStorage.currentListID);
                     }
                 }
             }
@@ -332,10 +381,13 @@ var listapp = (function() {
                 // Create the list item:
                 var item = document.createElement('li');
                 var href = document.createElement('a');
-                var rename_list = document.createElement('span');
-                var delete_list = document.createElement('span');
 
-                item.setAttribute('data-list-id', lists[i][0]);
+                var rename_list = document.createElement('span');
+                rename_list.setAttribute('class', 'glyphicon glyphicon-pencil');
+
+                var delete_list = document.createElement('span');
+                delete_list.setAttribute('class', 'glyphicon glyphicon-trash');
+
 
                 // Set the contents:
                 href.appendChild(document.createTextNode(lists[i][1]));
@@ -343,23 +395,22 @@ var listapp = (function() {
                 // Set the URL and class
                 href.setAttribute('href', '#');
                 if (localStorage.currentPage==="Lists"){
+                    item.setAttribute('data-list-id', lists[i][0]);
                     href.setAttribute('onclick', 'listapp.getListItems(\''+lists[i][0]+'\')');
+                    rename_list.setAttribute('onclick', 'listapp.show_rename_list(this.parentElement.getAttribute("data-list-id"));');
+                    delete_list.setAttribute('onclick', 'listapp.delete_list(this.parentElement.getAttribute("data-list-id"));');
                 }
                 href.setAttribute('id', 'Lists'+lists[i][0]);
                 href.setAttribute('class', 'list');
-
-                rename_list.setAttribute('class', 'glyphicon glyphicon-pencil');
-                rename_list.setAttribute('onclick', 'listapp.show_rename_list(this.parentElement.getAttribute("data-list-id"));');
-
-                delete_list.setAttribute('class', 'glyphicon glyphicon-trash');
-                delete_list.setAttribute('onclick', 'listapp.delete_list(this.parentElement.getAttribute("data-list-id"));');
-                
 
                 item.appendChild(href);
                 item.appendChild(delete_list);
                 item.appendChild(rename_list);
                 
                 if ((localStorage.currentPage==="ListItems") || (localStorage.currentPage==="SearchItems")){
+                    item.setAttribute('data-list-item-id', lists[i][0]);
+                    rename_list.setAttribute('onclick', 'listapp.show_rename_list_item(this.parentElement.getAttribute("data-list-item-id"));');
+                    delete_list.setAttribute('onclick', 'listapp.delete_list_item(this.parentElement.getAttribute("data-list-item-id"));');
                     var checkbox = document.createElement('INPUT');
                     checkbox.setAttribute('type', 'checkbox');
                     checkbox.setAttribute('class', 'completeBox');
