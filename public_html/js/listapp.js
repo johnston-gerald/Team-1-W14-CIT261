@@ -19,27 +19,25 @@ var listapp = (function() {
         doSearchList: function(){
             // Search function will return the name and value from localstorage.
             var keyword = document.getElementById("SearchKey").value;
-            keyword = keyword.toLowerCase();
+            //keyword = keyword.toLowerCase();
             var currentPage = "SearchItems";
             localStorage.setItem("currentPage", currentPage);
 
             jsonData = localStorage.alldata;
-            var dataArray = new Array();
+            //var dataArray = new Array();
             var dataArray = JSON.parse(jsonData);
-            console.log(dataArray);
-            
-            // dataArray.filter(function (person) { return dataArray.title == "sushi" });
+            //console.log(dataArray);
 
             var resultlist = new Array();
             var i = 0;
 
             
-            console.log(dataArray.length);
+            //console.log(dataArray.length);
             for (i = 0; i < dataArray.length; i++){
                 
                 value = dataArray[i].title;
-                value = value.toLowerCase();
-                console.log(value + " = " + keyword);
+                //value = value.toLowerCase();
+                //console.log(value + " = " + keyword);
                 var regexp = new RegExp(keyword, "gi");
                 if (regexp.test(value)){
                     var tmparray = new Array();
@@ -48,12 +46,12 @@ var listapp = (function() {
                     tmparray[2] =  "0";
                     tmparray[3] =  dataArray[i].status;
                     resultlist.push(tmparray);
-                    console.log(tmparray);
+                    //console.log(tmparray);
 
                 }       
 
             }
-            console.log(resultlist);
+            //console.log(resultlist);
             while (document.getElementById('content').firstChild) {
                 document.getElementById('content').removeChild(document.getElementById('content').firstChild);
             }
