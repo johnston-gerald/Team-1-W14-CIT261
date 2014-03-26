@@ -92,6 +92,8 @@ var listapp = (function() {
             } else {
                 document.getElementById('lists').firstChild.appendChild(list);
             }
+
+            list_name.focus();
         },
         addListItem: function(){
             var list_item_name = document.createElement("input");
@@ -117,6 +119,8 @@ var listapp = (function() {
             } else {
                 document.getElementById('lists').firstChild.appendChild(list_item);
             }
+
+            list_item_name.focus();
         },
         saveNewList: function(list_name){
             var data = '';
