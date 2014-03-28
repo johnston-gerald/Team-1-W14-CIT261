@@ -1,8 +1,8 @@
 var listapp = (function() {
     return{
         searchList: function (){
-            document.getElementById('search').style.height="5em";
-            document.getElementById('search').style.margin="5px";
+            document.getElementById('search').style.height="4em";
+            document.getElementById('search').style.margin=".25em";
             document.getElementById('search').innerHTML = "";
             var myform = document.createElement("div");
             var searchfield = document.createElement("input");
@@ -307,6 +307,9 @@ var listapp = (function() {
         getLists: function (){
             var currentPage = "Lists";
             localStorage.setItem("currentPage", currentPage);
+			var search = document.getElementById("search");
+            search.innerHTML = "";
+			document.getElementById('search').style.height="0";
             if (localStorage.currentListID){
                 localStorage.removeItem('currentListID');
             }
@@ -362,11 +365,11 @@ var listapp = (function() {
         },
         clear: function (){
             var content = document.getElementById("content");
-            content.innerHTML = "";
+            content.innerHTML = "<h1>List App</h1>";
             var search = document.getElementById("search");
             search.innerHTML = "";
             var menu = document.getElementById("main-menu");
-            menu.innerHTML = "<h1>List App</h1>";           
+            menu.innerHTML = "";           
         },        
         makeUL: function(lists) {
             

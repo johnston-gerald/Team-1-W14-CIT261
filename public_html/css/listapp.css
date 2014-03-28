@@ -1,14 +1,21 @@
-body {
+body,html {
     margin: 0px;
     padding: 0px;
     text-align: center;
+
 }
 
+
 #main-menu {
-    position: relative;
-    height: 5em;
+
+    height: 3em;
     top: 0px;
     width: 100%;
+	background: #00BFFF;
+	    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 #main-menu button {
@@ -16,6 +23,22 @@ body {
     height: 100%;
     font-size: 20px;
     float: left;
+	background: #00BFFF;
+	color: #FFF;
+    border-radius: 5px;
+	-webkit-transition: background-color 2s;
+    -moz-transition: background-color 2s;
+    -o-transition: background-color 2s;
+    -ms-transition: background-color 2s;
+    transition: background-color 2s;
+
+}
+#main-menu button:hover {
+background-color: #FFBF00;
+}
+
+#topspace {
+	height:3em;
 }
 
 #lists ul{
@@ -24,12 +47,20 @@ body {
     margin:0;
     margin-top: 0; 
     padding:0;
+	background: inherit;
+}
+
+#lists li:nth-child(odd) { 
+	background-color:#FFF; 
+}
+#lists li:nth-child(even) { 
+	background-color:#CCC; 
 }
 
 #lists li {
     display:block;
     width:100%;
-    height: 5em;
+    height: 4em;
     border-bottom: solid 1px #CCC;
     -webkit-transition: background-color 3s;
     -moz-transition: background-color 3s;
@@ -40,10 +71,12 @@ body {
 #lists li:hover {
 background-color: #A7B526;
 }
+
+
 #lists ul li a {
     text-decoration: none;
     font-size: 2em;
-    padding: 14px;
+    padding: .25em;
 }
 
 #lists ul li a.list {
@@ -55,23 +88,25 @@ background-color: #A7B526;
 #lists ul li input {
     height: 100%;
     float: left;
-    width: 80%;
+    width: 70%;
     font-size: 2em;
-    padding: 14px;
+    padding: .25em;
 }
 
 #lists ul li span {
     font-size: 2em;
-    padding: 20px;
+    padding: .25em;
+	padding-top: .5em;
     float: right;
 }
 
 #lists ul li input[type="checkbox"] {
-    font-size: 2em;
-    padding: 0;
+    font-size: 1.5em;
+	margin: .5em;
     float: right;
-    height: 2em;
-    width: 2em;
+	height: 1.5em;
+    width: 1.5em;
+
 }
 
 .g-signin {
@@ -87,17 +122,17 @@ background-color: #A7B526;
 
 }
 #search input {
-    margin: 5px;
-    height: 60%;
+    margin: .25em;
+    height: 2em;
     float: left;
     width: 60%;
     font-size: 1.5em;
 }
 #search button {
-    width: 25%;
+    width: 4em;
     height: 90%;
     float: right;
-    margin: 5px;
+    margin: .25em;
     font-size: 1.5em;
 }
 
