@@ -75,6 +75,7 @@ background-color: #A7B526;
 
 #lists ul li a {
     text-decoration: none;
+	text-transform:capitalize;
     font-size: 2em;
     padding: .25em;
 }
