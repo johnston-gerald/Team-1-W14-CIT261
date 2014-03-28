@@ -1,9 +1,10 @@
 var listapp = (function() {
     return{
         searchList: function (){
-            document.getElementById('search').style.height="4em";
-            document.getElementById('search').style.margin=".25em";
-            document.getElementById('search').innerHTML = "";
+            //document.getElementById('search').style.height="4em";
+			document.getElementById('search').style.visibility="visible";
+            //document.getElementById('search').style.margin=".25em";
+            //document.getElementById('search').innerHTML = "";
             var myform = document.createElement("div");
             var searchfield = document.createElement("input");
             searchfield.setAttribute('placeholder', 'Search');
@@ -307,9 +308,7 @@ var listapp = (function() {
         getLists: function (){
             var currentPage = "Lists";
             localStorage.setItem("currentPage", currentPage);
-			var search = document.getElementById("search");
-            search.innerHTML = "";
-			document.getElementById('search').style.height="0";
+			document.getElementById('search').style.visibility="hidden";
             if (localStorage.currentListID){
                 localStorage.removeItem('currentListID');
             }

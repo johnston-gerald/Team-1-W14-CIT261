@@ -12,7 +12,7 @@ body,html {
     top: 0px;
     width: 100%;
 	background: #00BFFF;
-	    position: fixed;
+	position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
@@ -34,7 +34,7 @@ body,html {
 
 }
 #main-menu button:hover {
-background-color: #FFBF00;
+	background-color: #FFBF00;
 }
 
 #topspace {
@@ -69,7 +69,7 @@ background-color: #FFBF00;
     transition: background-color 3s;
 }
 #lists li:hover {
-background-color: #A7B526;
+	background-color: #A7B526;
 }
 
 
@@ -112,27 +112,32 @@ background-color: #A7B526;
 
 .g-signin {
     position: relative;
-    top: 100px;
+    margin-top: 100px;
     
     
 }
 #search {
-    position: relative;
-    height: 0;
     width: 100%;
+	background: #FFBF00;
+	height:4em;
+	position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+	visibility:hidden
 
 }
 #search input {
     margin: .25em;
-    height: 2em;
+	height: 2em;
     float: left;
-    width: 60%;
+    width: 70%;
     font-size: 1.5em;
 }
 #search button {
     width: 4em;
-    height: 90%;
-    float: right;
+    height: 2em;
+    float: left;
     margin: .25em;
     font-size: 1.5em;
 }
