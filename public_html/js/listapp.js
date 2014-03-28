@@ -421,9 +421,9 @@ var listapp = (function() {
                     checkbox.setAttribute('class', 'completeBox');
                     if (lists[i][3]==="Completed"){
                         checkbox.setAttribute('checked', 'checked');
-                        checkbox.setAttribute('onclick', 'listapp.resetstatus_itemitem(this.parentElement.getAttribute("data-list-id"));');
+                        checkbox.setAttribute('onclick', 'listapp.resetstatus_itemitem(this.parentElement.getAttribute("data-list-item-id"));');
                     }else{
-                        checkbox.setAttribute('onclick', 'listapp.complete_itemitem(this.parentElement.getAttribute("data-list-id"));');
+                        checkbox.setAttribute('onclick', 'listapp.complete_itemitem(this.parentElement.getAttribute("data-list-item-id"));');
                     }
                     item.appendChild(checkbox);
                 }
