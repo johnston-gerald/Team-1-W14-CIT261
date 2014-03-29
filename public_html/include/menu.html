@@ -1,4 +1,8 @@
 <button type="button" onclick="listapp.getLists();"><span class="glyphicon glyphicon-arrow-left"></span></button>
 <button type="button" onclick="listapp.addList();"><span class="glyphicon glyphicon-plus"></span></button>
 <button type="button" onclick="listapp.searchList();"><span class="glyphicon glyphicon-search"></span></button>
-<button id="disconnect" type="button" onclick="helper.disconnect()"><span class="glyphicon glyphicon-align-justify"></span></button>
+<button id="disconnect" type="button" onclick="listapp.showOptionsMenu()"><span class="glyphicon glyphicon-align-justify"></span></button>
+<div id="options-menu">
+    <button onclick="#showcredits" id="credits">Credits</button>
+    <button onclick="helper.disconnect()" id="logout">Logout</button>
+</div>

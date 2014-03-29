@@ -274,7 +274,7 @@ var listapp = (function() {
         get_alldata: function (){
             var data = {};
             data.id = localStorage.id;                     
-            var request = this.ajaxRequestjson('POST', 'php/get_alldata.php', data);
+            var request = this.ajaxRequestJSON('POST', 'php/get_alldata.php', data);
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
                         localStorage.setItem("alldata", request.responseText);
@@ -287,7 +287,7 @@ var listapp = (function() {
             data.user_name = localStorage.user_name;
             data.email = localStorage.email;
                       
-            var request = this.ajaxRequestjson('POST', 'php/get_user.php', data);
+            var request = this.ajaxRequestJSON('POST', 'php/get_user.php', data);
 
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
@@ -297,12 +297,23 @@ var listapp = (function() {
             };
         },
         showMenu: function (){
-            var request = this.ajaxRequest('GET', 'include/menu.html');
+            var request = this.ajaxRequestJSON('GET', 'include/menu.html?cache='+new Date().getTime());
             request.onreadystatechange = function(){
                 if (request.readyState===4 && request.status===200) {
                     document.getElementById("main-menu").innerHTML = "";
                     document.getElementById("main-menu").innerHTML = request.responseText;
                 }
+            }
+        },
+        showOptionsMenu: function (){
+            if(document.getElementById('options-menu').style.height == '56px'){
+                document.getElementById('options-menu').style.height = '0px';
+                document.getElementById('credits').style.border = 'none';
+                document.getElementById('logout').style.border = 'none';
+            } else {
+                document.getElementById('options-menu').style.height = '56px';
+                document.getElementById('credits').style.border = 'solid 1px #CCC';
+                document.getElementById('logout').style.border = 'solid 1px #CCC';
             }
         },
         getLists: function (){
@@ -441,8 +452,9 @@ var listapp = (function() {
             xmlhttp.send(data);
             return xmlhttp;
         },
-        ajaxRequestjson: function(method, url, data){
+        ajaxRequestJSON: function(method, url, data){
             myData = JSON.stringify(data);
+            console.log(myData);
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open(method,url,true);
             xmlhttp.setRequestHeader("Content-Type", "application/json");

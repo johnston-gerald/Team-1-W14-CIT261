@@ -142,3 +142,21 @@ body,html {
     font-size: 1.5em;
 }
 
+#options-menu {
+    width: 25%;
+    float: right;
+    height: 0px;
+    -webkit-transition:height 1s;
+    transition:height 1s;
+}
+
+#options-menu button {
+    width: 100%;
+    font-size: 2em;
+    border: 0px solid #CCC;
+    background: #FFF;
+    color: #333;
+    border-radius: 0px;
+    -webkit-transition:border 2s;
+    transition:border 2s;
+}
