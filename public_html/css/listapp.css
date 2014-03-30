@@ -118,18 +118,18 @@ body,html {
 }
 #search {
     width: 100%;
-	background: #FFBF00;
-	height:4em;
-	position: fixed;
+    background: #FFBF00;
+    height:4em;
+    position: fixed;
     bottom: 0;
     left: 0;
     z-index: 1;
-	visibility:hidden
+    visibility:hidden
 
 }
 #search input {
     margin: .25em;
-	height: 2em;
+    height: 2em;
     float: left;
     width: 70%;
     font-size: 1.5em;

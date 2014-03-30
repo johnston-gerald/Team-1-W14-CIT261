@@ -1,44 +1,28 @@
 var listapp = (function() {
     return{
         searchList: function (){
-            //document.getElementById('search').style.height="4em";
-			document.getElementById('search').style.visibility="visible";
-            //document.getElementById('search').style.margin=".25em";
-            //document.getElementById('search').innerHTML = "";
-            var myform = document.createElement("div");
-            var searchfield = document.createElement("input");
-            searchfield.setAttribute('placeholder', 'Search');
-            searchfield.setAttribute('id', 'SearchKey');
-            var btn=document.createElement("button");
-            var t=document.createTextNode("Search");
-            btn.appendChild(t);
-            btn.setAttribute('onclick', 'listapp.doSearchList()');
-            myform.appendChild(searchfield);
-            myform.appendChild(btn);
-            document.getElementById('search').appendChild(myform);
-        },
+            if(document.getElementById('search').style.visibility==="hidden"){
+                document.getElementById('search').style.visibility="visible";
+            }    
+            else{
+               document.getElementById('search').style.visibility="hidden"; 
+            }
+        },        
         doSearchList: function(){
             // Search function will return the name and value from localstorage.
             var keyword = document.getElementById("SearchKey").value;
-            //keyword = keyword.toLowerCase();
             var currentPage = "SearchItems";
             localStorage.setItem("currentPage", currentPage);
 
             jsonData = localStorage.alldata;
-            //var dataArray = new Array();
             var dataArray = JSON.parse(jsonData);
-            //console.log(dataArray);
 
             var resultlist = new Array();
             var i = 0;
-
             
-            //console.log(dataArray.length);
             for (i = 0; i < dataArray.length; i++){
                 
                 value = dataArray[i].title;
-                //value = value.toLowerCase();
-                //console.log(value + " = " + keyword);
                 var regexp = new RegExp(keyword, "gi");
                 if (regexp.test(value)){
                     var tmparray = new Array();
@@ -47,12 +31,10 @@ var listapp = (function() {
                     tmparray[2] =  "0";
                     tmparray[3] =  dataArray[i].status;
                     resultlist.push(tmparray);
-                    //console.log(tmparray);
 
                 }       
 
             }
-            //console.log(resultlist);
             while (document.getElementById('content').firstChild) {
                 document.getElementById('content').removeChild(document.getElementById('content').firstChild);
             }
