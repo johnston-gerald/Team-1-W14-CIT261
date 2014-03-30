@@ -250,9 +250,9 @@ var listapp = (function() {
                 request.onreadystatechange = function(){
                     if (request.readyState==4 && request.status==200) {
                         if (localStorage.currentPage==="SearchItems"){
-                            listapp.doSearchList()
+                            //listapp.doSearchList()
                         }else{
-                            listapp.getListItems(localStorage.currentListID);
+                            //listapp.getListItems(localStorage.currentListID);
                         }
                     }
                 };
@@ -264,9 +264,9 @@ var listapp = (function() {
                 var request = this.ajaxRequest('POST', 'php/resetstatus_listitem.php', data);
                 request.onreadystatechange = function(){
                         if (localStorage.currentPage==="SearchItems"){
-                            listapp.doSearchList()
+                            //listapp.doSearchList()
                         }else{
-                            listapp.getListItems(localStorage.currentListID);
+                            //listapp.getListItems(localStorage.currentListID);
                         }
                 };
             }
@@ -310,16 +310,19 @@ var listapp = (function() {
                 document.getElementById('options-menu').style.height = '0px';
                 document.getElementById('credits').style.border = 'none';
                 document.getElementById('logout').style.border = 'none';
+                document.getElementById('options-menu').style.visibility = 'hidden';
             } else {
                 document.getElementById('options-menu').style.height = '56px';
                 document.getElementById('credits').style.border = 'solid 1px #CCC';
                 document.getElementById('logout').style.border = 'solid 1px #CCC';
+                document.getElementById('options-menu').style.visibility = 'visible';
             }
         },
         getLists: function (){
             var currentPage = "Lists";
             localStorage.setItem("currentPage", currentPage);
-			document.getElementById('search').style.visibility="hidden";
+            document.getElementById('search').style.visibility="hidden";
+            
             if (localStorage.currentListID){
                 localStorage.removeItem('currentListID');
             }

@@ -148,6 +148,7 @@ body,html {
     height: 0px;
     -webkit-transition:height 1s;
     transition:height 1s;
+    visibility: hidden;
 }
 
 #options-menu button {
