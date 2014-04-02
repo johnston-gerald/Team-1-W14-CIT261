@@ -161,3 +161,71 @@ body,html {
     -webkit-transition:border 2s;
     transition:border 2s;
 }
+
+#h1 {
+        color: blue;
+        font-size: 3em;
+      -moz-animation-duration: 3s;
+      -webkit-animation-duration: 3s;
+      -moz-animation-name: slidein;
+      -webkit-animation-name: slidein;
+      -moz-animation-iteration-count: 1;
+      -webkit-animation-iteration-count: 1;
+}
+
+#h2 {
+        color:gold;
+      font-size: 2em;
+      -moz-animation-duration: 6s;
+      -webkit-animation-duration: 6s;
+      -moz-animation-name: slidein;
+      -webkit-animation-name: slidein;
+      -moz-animation-iteration-count: 1;
+      -webkit-animation-iteration-count: 1;
+}
+
+#h3 {
+      font-size: 1.5em;
+      -moz-animation-duration: 9s;
+      -webkit-animation-duration: 9s;
+      -moz-animation-name: slidein;
+      -webkit-animation-name: slidein;
+      -moz-animation-iteration-count: 1;
+      -webkit-animation-iteration-count: 1;
+}
+
+@-moz-keyframes slidein {
+      from {
+        margin-left:100%;
+        width:300%
+      }
+      
+      75% {
+        font-size:500%;
+        margin-left:25%;
+        width:150%;
+      }
+      
+      to {
+        margin-left:0%;
+        width:100%;
+      }
+}
+    
+@-webkit-keyframes slidein {
+      from {
+        margin-left:100%;
+        width:300%
+      }
+      
+      75% {
+        font-size:500%;
+        margin-left:25%;
+        width:150%;
+      }
+      
+      to {
+        margin-left:0%;
+        width:100%;
+      }
+}
