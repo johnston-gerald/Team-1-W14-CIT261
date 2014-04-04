@@ -361,8 +361,7 @@ var listapp = (function() {
         clear: function (){
             var content = document.getElementById("content");
             content.innerHTML = "<h1>List App</h1>";
-            var search = document.getElementById("search");
-            search.innerHTML = "";
+            document.getElementById('search').style.visibility="hidden";
             var menu = document.getElementById("main-menu");
             menu.innerHTML = "";           
         },        
